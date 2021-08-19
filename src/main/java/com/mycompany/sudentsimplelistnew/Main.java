@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         SList list = new SList();
         list.add("perra", 0);
-//
+        list.clean();
         list.add("carlos", 0);
         list.add("david", 5);
         list.add("ana", 0);
