@@ -58,7 +58,7 @@ public class SList implements ILinkedListTDA {
             System.out.println("Nombre:"+current.getValue().getName()+"/     Edad:"+current.getValue().getAge());
             current=current.getNext();}
         System.out.println("size:"+quantity);
-        System.out.println("last:"+last.getValue().getName());
+        //System.out.println("last:"+last.getValue().getName());
 
         
     
@@ -129,7 +129,8 @@ public class SList implements ILinkedListTDA {
 
     @Override
     public Node findLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return last;
     }
 
     @Override
