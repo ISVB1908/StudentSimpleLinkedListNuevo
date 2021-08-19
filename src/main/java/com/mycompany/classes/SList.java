@@ -119,7 +119,32 @@ public class SList implements ILinkedListTDA {
 
     @Override
     public void indexDelete(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        int count=0;
+        Node current=getFirst();
+        if(index>=quantity || index<0){
+        
+            System.out.println("index doesn't exist");
+        }else if(current==null){
+            System.out.println("the list is empty");
+        
+        }else if(index==0){
+       
+            deleteFirst();
+        }else if(index==quantity-1){
+        
+            deleteLast();
+        }else{
+        
+            while(count<index-1){
+            
+                count++;
+                current=current.getNext();
+            }
+            current.setNext(current.getNext().getNext());
+            quantity--;
+        }
+        
     }
 
     @Override

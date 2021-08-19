@@ -25,6 +25,7 @@ public class Main {
         list.add("bobo", 0);
         list.deleteFirst();
         list.deleteLast();
+        list.indexDelete(0);
         list.print();
         list.getLast();
         System.out.println("probar last:"+list.findLast().getValue().getName());
