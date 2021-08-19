@@ -65,6 +65,10 @@ public class SList implements ILinkedListTDA {
         
     
     }
+    public int size(){
+    
+        return quantity;
+    }
 
     @Override
     public void add(String name, int age) {
@@ -205,7 +209,7 @@ public class SList implements ILinkedListTDA {
     @Override
     public Node findLast() {
 
-        if(last==null){
+        if(first==null){
         
             try {
                 throw new Exception("the list is empty");
