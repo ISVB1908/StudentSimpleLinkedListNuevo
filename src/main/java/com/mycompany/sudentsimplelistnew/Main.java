@@ -24,6 +24,7 @@ public class Main {
         list.add("aaron", 4);
         list.add("bobo", 0);
         list.deleteFirst();
+        list.deleteLast();
         list.print();
 
     }
