@@ -33,7 +33,6 @@ public class SList implements ILinkedListTDA {
     public Node getLast() {
         return last;
     }
-
     public void setLast(Node last) {
         this.last = last;
     }
@@ -114,9 +113,32 @@ public class SList implements ILinkedListTDA {
 
     @Override
     public Node indexFind(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
+        int count=0;
+        Node current=getFirst();
+        if(index>=quantity || index<0){
+        
+            System.out.println("index doesn't exist");
+        }else if(current==null){
+            System.out.println("the list is empty");
+        
+        }else if(index==0){
+       
+            
+        }else if(index==quantity-1){
+        
+            current=getLast();
+        }else{
+        
+            while(count<index){
+            
+                count++;
+                current=current.getNext();
+            }
+            
+    }
+            return current;
+    }
     @Override
     public void indexDelete(int index) {
 

@@ -31,6 +31,7 @@ public class Main {
         System.out.println("probar last:"+list.findLast().getValue().getName());
         list.getFirst();
         System.out.println("probar first:"+list.findFirst().getValue().getName());
+        System.out.println("index find:"+list.indexFind(3).getValue().getName());
 
 
     }
