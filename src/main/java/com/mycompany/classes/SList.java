@@ -5,12 +5,15 @@
  */
 package com.mycompany.classes;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author vasqu
  */
 public class SList implements ILinkedListTDA {
-        private Node first;
+    private Node first;
     private Node last;
     public int quantity;
 
@@ -112,15 +115,23 @@ public class SList implements ILinkedListTDA {
     }
 
     @Override
-    public Node indexFind(int index) {
+    public Node indexFind(int index){
 
         int count=0;
         Node current=getFirst();
         if(index>=quantity || index<0){
         
-            System.out.println("index doesn't exist");
+            try {
+                throw new Exception("index doesn't exist");
+            } catch (Exception ex) {
+                Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if(current==null){
-            System.out.println("the list is empty");
+            try {
+                throw new Exception("the list is empty");
+            } catch (Exception ex) {
+                Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
         }else if(index==0){
        
@@ -146,10 +157,18 @@ public class SList implements ILinkedListTDA {
         Node current=getFirst();
         if(index>=quantity || index<0){
         
-            System.out.println("index doesn't exist");
+            try {
+                throw new Exception("index doesn't exist");
+            } catch (Exception ex) {
+                Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if(current==null){
-            System.out.println("the list is empty");
-        
+            
+        try {
+                throw new Exception("the list is empty");
+            } catch (Exception ex) {
+                Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if(index==0){
        
             deleteFirst();
@@ -172,24 +191,56 @@ public class SList implements ILinkedListTDA {
     @Override
     public Node findFirst() {
 
+        if(first==null){
+        
+            try {
+                throw new Exception("the list is empty");
+            } catch (Exception ex) {
+                Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return first;
     }
 
     @Override
     public Node findLast() {
 
+        if(last==null){
+        
+            try {
+                throw new Exception("the list is empty");
+            } catch (Exception ex) {
+                Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return last;
     }
 
     @Override
     public void deleteFirst() {
 
+        if(first==null){
+        
+            try {
+                throw new Exception("the list is empty");
+            } catch (Exception ex) {
+                Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         first=first.getNext();
         quantity=quantity-1;    }
 
     @Override
     public void deleteLast() {
 
+        if(last==null){
+        
+            try {
+                throw new Exception("the list is empty");
+            } catch (Exception ex) {
+                Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         quantity=quantity-1;
         Node current=getFirst();
         while(current.getNext()!=last){
