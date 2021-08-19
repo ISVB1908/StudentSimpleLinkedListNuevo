@@ -21,7 +21,9 @@ public class Main {
         list.add("ana", 0);
         list.add("aaron", 0);
         list.add("x",0);
+        list.add("aaron", 4);
         list.add("bobo", 0);
+        list.deleteFirst();
         list.print();
 
     }

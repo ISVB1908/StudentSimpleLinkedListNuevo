@@ -133,8 +133,9 @@ public class SList implements ILinkedListTDA {
 
     @Override
     public void deleteFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+        first=first.getNext();
+        quantity=quantity-1;    }
 
     @Override
     public void deleteLast() {
