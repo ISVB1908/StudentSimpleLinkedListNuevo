@@ -124,7 +124,8 @@ public class SList implements ILinkedListTDA {
 
     @Override
     public Node findFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return first;
     }
 
     @Override

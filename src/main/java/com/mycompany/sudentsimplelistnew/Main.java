@@ -28,6 +28,9 @@ public class Main {
         list.print();
         list.getLast();
         System.out.println("probar last:"+list.findLast().getValue().getName());
+        list.getFirst();
+        System.out.println("probar first:"+list.findFirst().getValue().getName());
+
 
     }
     
