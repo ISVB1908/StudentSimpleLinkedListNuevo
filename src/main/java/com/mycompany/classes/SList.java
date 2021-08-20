@@ -16,41 +16,117 @@ public class SList implements ILinkedListTDA {
     private Node first;
     private Node last;
     public int quantity;
-
+    public int sumAge=0;
+    public float average;
+    public int higher;
+    public int less=0;
+    public int positionVerify;
+    public int positionChange;
+    
+    //getter and setters
+    public int getSumAge() {
+        return sumAge;
+    }
+    public void setSumAge(int sumAge) {
+        this.sumAge = sumAge;
+    }
+    public float getAverage() {
+        return average;
+    }
+    public void setAverage(float average) {
+        this.average = average;
+    }
     public int getQuantity() {
         return quantity;
     }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
     public Node getFirst() {
         return first;
     }
-
     public void setFirst(Node first) {
         this.first = first;
     }
-
     public Node getLast() {
         return last;
     }
     public void setLast(Node last) {
         this.last = last;
     }
+    //function
     
-    
-    public int averageAge(){
-        return 0;
+    public float averageAge(){
+        if(sumAge==0){
+     
+            average=0;
+        }else{
+            
+            average=sumAge/quantity;
+        }
+        return average;
     
     }
     public int lessAge(){
-        return 0;
+        if(first==null){
+        try {
+                throw new Exception("empty list");
+            } catch (Exception ex) {
+                Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
+            }         
+        }else{
+        
+            positionVerify=0;
+            positionChange=0;
+            Node current=first;
+            higher=first.getValue().getAge();
+            while(current.getNext()!=null){
+            positionChange++;
+                if(current.getNext().getValue().getAge()<=higher){
+            
+                    higher=current.getNext().getValue().getAge();
+                    positionVerify=positionChange;
+                    
+                }
+                current=current.getNext();
+                
+            }
+            positionVerify=positionVerify+1;
+        }
+        System.out.println("pequeno"+higher);
+        
+        return positionVerify;
     
     }
     public int higherAge(){
-        return 0;
+        if(first==null){
+        try {
+                throw new Exception("empty list");
+            } catch (Exception ex) {
+                Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
+            }         
+        }else{
+        
+            positionVerify=0;
+            positionChange=0;
+            Node current=first;
+            higher=first.getValue().getAge();
+            while(current.getNext()!=null){
+            positionChange++;
+                if(current.getNext().getValue().getAge()>=higher){
+            
+                    higher=current.getNext().getValue().getAge();
+                    positionVerify=positionChange;
+                    
+                }
+                current=current.getNext();
+              
+            }
+            positionVerify=positionVerify+1;
+            System.out.println("grande:"+higher);
+        }
+        
+        return positionVerify;
     
     }
     public void print(){
@@ -65,14 +141,11 @@ public class SList implements ILinkedListTDA {
         
     
     }
-    public int size(){
-    
-        return quantity;
-    }
 
     @Override
     public void add(String name, int age) {
 
+        
         //initialize quantity
         quantity++;
         //create a new Nodo that contains student
@@ -85,16 +158,19 @@ public class SList implements ILinkedListTDA {
         if (first==null){
             first=newNode;
             last=first;
+            sumAge=sumAge+newNode.getValue().getAge();
         //verify if the string is smaller than first
         }else if(s.getName().compareTo(first.getValue().getName())<0){
         
             newNode.setNext(first);
             first=newNode;
+            sumAge=sumAge+newNode.getValue().getAge();
         //verify if the string is grater than last
         }else if(last.getValue().getName().compareTo(s.getName())<=0){
 
             last.setNext(newNode);
             last=last.getNext();
+            sumAge=sumAge+newNode.getValue().getAge();
         
         }else{
        
@@ -108,6 +184,7 @@ public class SList implements ILinkedListTDA {
                 
                     newNode.setNext(current.getNext());
                     current.setNext(newNode);
+                    sumAge=sumAge+newNode.getValue().getAge();
                     break;
                 }else{
                 
@@ -123,7 +200,7 @@ public class SList implements ILinkedListTDA {
 
         int count=0;
         Node current=getFirst();
-        if(index>=quantity || index<0){
+        if(index>quantity || index<=0){
         
             try {
                 throw new Exception("index doesn't exist");
@@ -137,15 +214,16 @@ public class SList implements ILinkedListTDA {
                 Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-        }else if(index==0){
+        }else if(index==1){
        
+            current=first;
             
-        }else if(index==quantity-1){
+        }else if(index==quantity){
         
-            current=getLast();
+            current=last;
         }else{
         
-            while(count<index){
+            while(count<index-1){
             
                 count++;
                 current=current.getNext();
@@ -159,7 +237,7 @@ public class SList implements ILinkedListTDA {
 
         int count=0;
         Node current=getFirst();
-        if(index>=quantity || index<0){
+        if(index>quantity || index<=0){
         
             try {
                 throw new Exception("index doesn't exist");
@@ -173,10 +251,10 @@ public class SList implements ILinkedListTDA {
             } catch (Exception ex) {
                 Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(index==0){
+        }else if(index==1){
        
             deleteFirst();
-        }else if(index==quantity-1){
+        }else if(index==quantity){
         
             deleteLast();
         }else{
@@ -186,6 +264,7 @@ public class SList implements ILinkedListTDA {
                 count++;
                 current=current.getNext();
             }
+            sumAge=sumAge-current.getNext().getValue().getAge();
             current.setNext(current.getNext().getNext());
             quantity--;
         }
@@ -230,9 +309,12 @@ public class SList implements ILinkedListTDA {
             } catch (Exception ex) {
                 Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }else{
+        sumAge=sumAge-first.getValue().getAge();
         first=first.getNext();
-        quantity=quantity-1;    }
+        quantity=quantity-1;
+        }
+            }
 
     @Override
     public void deleteLast() {
@@ -244,15 +326,18 @@ public class SList implements ILinkedListTDA {
             } catch (Exception ex) {
                 Logger.getLogger(SList.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }else{
         quantity=quantity-1;
         Node current=getFirst();
         while(current.getNext()!=last){
             
             current=current.getNext();
         }
+        sumAge=sumAge-last.getValue().getAge();
         last=current;
-        last.setNext(null);
+        last.setNext(null);      
+        }
+        
         
 
         
@@ -263,5 +348,7 @@ public class SList implements ILinkedListTDA {
     @Override
     public void clean() {
         this.first=null;
-        this.quantity=0;    }
+        this.quantity=0;
+        this.sumAge=0;
+    }
 }
